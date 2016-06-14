@@ -1,0 +1,19 @@
+/* Implementation */
+.frame {
+  width: 300px;
+  background-color: #C0B0D1;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  padding: 20px 20px 20px 20px;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+a {
+  text-decoration: none;
+}
+a:hover {
+  color: White;
+}
+.table-list {
+  display: flex;
+}

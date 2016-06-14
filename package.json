@@ -1,0 +1,17 @@
+{
+  "name": "booktask",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --hot --history-api-fallback"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0",
+    "react-router": "^2.4.1",
+    "webpack": "^1.13.1"
+  }
+}
