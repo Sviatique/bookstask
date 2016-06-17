@@ -6,11 +6,11 @@ class App extends React.Component{
   render() {
     return (
       <div>
-        <ul role="nav">
-          
-  <li><Link to="/Books"  activeStyle={{ color: 'red' }}>Books</Link></li>
-  <li><Link to="/Authors" activeStyle={{ color: 'red' }}>Authors</Link></li>
-        </ul>
+        <div className="list"> 
+
+            <div className="list-item"><Link to="/Books"  activeStyle={{ color: 'red' }}>Books</Link></div>
+            <div className="list-item"><Link to="/Authors" activeStyle={{ color: 'red' }}>Authors</Link> </div>
+        </div>
         
         
         {this.props.children}

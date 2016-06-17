@@ -17,7 +17,7 @@ class Genre extends React.Component{
     return (
       	<div>
       	<h1> {this.props.params.name} </h1>
-		<div> 
+		<div className="list"><div className="item-identifiers"> Books in this genre: </div> 
 			{this.genreBooksList.map((book,i) => 
 				<div key = {i}>
 					<Link to = {{pathname: `/Books/${book.name}`}}> {book.name}</Link>

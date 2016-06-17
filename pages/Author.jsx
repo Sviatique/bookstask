@@ -17,9 +17,9 @@ class Author extends React.Component{
     return (
       <div>
         <h1> {this.props.params.name} </h1>
-        <div> {this.author.fullName}</div>
-        <div> {this.author.bio}</div>
-        <div> {this.author.booksList.map((book,i) => 
+        <div className="list"> <ItemIdentifier value="Name" /> {this.author.fullName}</div>
+        <div className="list"> <ItemIdentifier value="Biography" /> {this.author.bio}</div>
+        <div className="list"> <ItemIdentifier value="Written books" />{this.author.booksList.map((book,i) => 
           <div key ={i}> 
             <Link to={{pathname: `/Books/${book}`}}> {book} </Link>
           </div>)}
@@ -28,5 +28,11 @@ class Author extends React.Component{
     )
   }
 }
-
+class ItemIdentifier extends React.Component{
+  render(){
+    return(
+        <div className="item-identifiers"> {this.props.value}: </div>
+      )
+  }
+}
 export default Author;

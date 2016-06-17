@@ -1,4 +1,3 @@
-
 var authorsData= [
         {
           "id": "Author1",

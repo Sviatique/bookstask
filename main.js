@@ -11,7 +11,6 @@ import Genre from './pages/Genre.jsx';
 ReactDOM.render((
 	<Router history={browserHistory}>
 		<Route path = "/" component = {App}>		
-			
 			<Route path = "/Books" component = {Books} />
 			<Route path = "/Authors" component = {Authors} />
 			<Route path = "/Authors/:name" component = {Author} />

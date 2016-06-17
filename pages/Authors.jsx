@@ -7,9 +7,6 @@ class Authors extends React.Component{
 	constructor(){
 		super();
 		
-		this.state ={
-			authorDataMarkup: "",
-		}
 		this.alreadyOpened = 0;
 		this.authorsInfo = [];		
 		
@@ -35,17 +32,14 @@ class Authors extends React.Component{
     return (
 		<div>
 			<h1> Authors</h1>
-			<table >
-				<tbody>
+			
 					{authorsData.map((author, i) => 
 						
 						<AuthorName click={this.handleClick.bind(this,i, author)} key = {i} data = {author} openedAuthorInfo={this.authorsInfo[i]}/> 
 						
 						)}  
 					
-				</tbody>
-
-			</table>
+				
 			
 		</div>
     )
@@ -65,10 +59,14 @@ class AuthorName extends React.Component{
 	render() {
 
       return (
-         <tr>          
-            <td onClick={this.showDropDownMenu}>{this.props.data.fullName}</td>
-            <div id= {this.props.data.id}> {this.props.openedAuthorInfo}</div>
-         </tr>
+      	<div>
+	        <div className="clickable">
+	        	<div className="clickable-item">
+	            	<div className="list" onClick={this.showDropDownMenu}>{this.props.data.fullName}</div>
+	            </div>
+	        </div>
+	            <div id= {this.props.data.id}> {this.props.openedAuthorInfo}</div>
+        </div>
       );
    }
 }
@@ -77,13 +75,17 @@ class AuthorInfo extends React.Component{
 	render(){
 		return(
 				
-			<td>
+			<div>
 				<Link to={{ pathname: `/Authors/${this.props.data.id}`}}>{this.props.data.id} page </Link>
-            {this.props.data.booksList.map((book,i) => 
-            	<div key = {i}> 
-            	<Link to={{ pathname: `/Books/${book}`}} > {book} </Link>
-            	</div>)}
-            </td>
+            	<div className="list"> 
+            		<div className="item-identifiers"> Written books: </div>
+
+	            	{this.props.data.booksList.map((book,i) => 
+	            	<div key = {i} className="list-item"> 
+	            	<Link to={{ pathname: `/Books/${book}`}} > {book} </Link>
+	            	</div>)}
+            	</div>
+            </div>
 				 
 			);
 	}

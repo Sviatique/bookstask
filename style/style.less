@@ -1,10 +1,11 @@
+@padding-for-items: 10px;
+
 .border-radius (@radius: 5px) {
 	-webkit-border-radius: @radius;
 	-moz-border-radius: @radius;
 	border-radius: @radius;
 }
 
-/* Implementation */
 .frame {
 	width: 300px;
 	background-color: #C0B0D1;
@@ -18,6 +19,22 @@ a {
 a:hover {
 	color: White;
 }
-.table-list {
-	display: flex;
+.list {
+	display:flex;
+
+}
+.list-item{
+
+	padding-right: 10px;
+}
+.clickable{
+  
+  padding: 15px 0 15px 20px;
+}
+.clickable-item{
+	cursor: pointer;	
+}
+.item-identifiers{
+	font-size: 17px;
+	padding-right: 15px;
 }

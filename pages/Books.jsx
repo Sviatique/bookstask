@@ -13,11 +13,9 @@ class Books extends React.Component{
 				Books
 			</h1>
 			<div>
-			<table>
-               <tbody>
+		
                   {booksData.map((book, i) => <BookInfo key = {i} data = {book} />)}
-               </tbody>
-            </table>
+              	 	
 				
 			</div>
 			</div>
@@ -28,15 +26,22 @@ class BookInfo extends React.Component{
 	render() {
 
       return (
-         <tr>
-          
-            <td><Link to={{pathname: `/Books/${this.props.data.name}`}}>{this.props.data.name}</Link></td>
-            <td class="table-list">{this.props.data.authors.map((author,i) => 
-            	<div key = {i}> 
-            	<Link to={{ pathname: `/Authors/${author}`}} > {author} </Link>
-            	</div>)}</td>
-          
-         </tr>
+         
+          	<div>
+				<ul>
+					<li >
+						<Link to={{pathname: `/Books/${this.props.data.name}`}}>{this.props.data.name}</Link>
+					</li>
+				</ul>
+				<div className="list">
+				<div className="item-identifiers"> Authors: </div>
+	            {this.props.data.authors.map((author,i) => 
+	            	<div key={i} className="list-item">
+	            		<Link to={{ pathname: `/Authors/${author}`}} > {author}</Link>
+	            	</div>
+	            )}          
+	            </div>
+        	</div>
       );
    }
 }
