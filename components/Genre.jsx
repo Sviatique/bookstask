@@ -1,19 +1,21 @@
 import React from 'react'
 import { Link } from 'react-router'
-import booksData from '../data/BooksData.js'
-class Genre extends React.Component{
-	constructor(props){
-	    super(props);
-	    
-		this.genreBooksList = [];
 
+import {connect} from 'react-redux'
+
+class Genre extends React.Component{
+	
+  render() {
+
+		this.genreBooksList = [];
+		const { dispatch, booksInfo} = this.props;
+		var booksData = booksInfo.books.booksList;
+		
 	    for(var i =0; i<booksData.length; i++){
 			if(booksData[i].genre === this.props.params.name){
 				this.genreBooksList.push(booksData[i]);
 			}
 	    }
-  	}
-  render() {
     return (
       	<div>
       	<h1> {this.props.params.name} </h1>
@@ -28,5 +30,9 @@ class Genre extends React.Component{
     )
   }
 }
-
-export default Genre;
+function select(state) {
+   return {
+     booksInfo: state.bookTaskApp
+   }
+}
+export default connect(select)(Genre)

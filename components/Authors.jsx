@@ -1,34 +1,45 @@
 import React from 'react'
 import { Link } from 'react-router'
-import authorsData from '../data/AuthorsData.js'
+import { connect } from 'react-redux'
+
+import { openAuthorInfo } from '../actions/Actions'
 
 class Authors extends React.Component{
 	
 	constructor(){
 		super();
-		
+		this.authorsDataLength = 0;
 		this.alreadyOpened = 0;
 		this.authorsInfo = [];		
 		
 	}
 	handleClick(clickedId, authorData){
-
+		
 		this.authorsInfo[this.alreadyOpened] = "";
-		this.authorsInfo[clickedId] = <AuthorInfo data = {authorData} />
+		//var authorData = "authorData";
+		
+		this.dispatch(openAuthorInfo(clickedId));
 
 		this.alreadyOpened = clickedId;
 		this.forceUpdate()
 	}
 	componentDidMount() {
-		
-		for(var i=0; i<authorsData.length; i++){
+		this.dispatch = this.props.dispatch;
+		for(var i=0; i<this.authorsDataLength; i++){
 			this.authorsInfo.push("");
-			
 		}
 		
 	}
   render() {
-    	
+    	const {authorsInfo} = this.props;
+    	var authorsData = authorsInfo.authors.authorsList;
+    	var chosenAuthorId = authorsInfo.authors.chosenAuthorId;
+    	this.authorsDataLength = authorsData.length;
+
+    	if(chosenAuthorId >= 0 && chosenAuthorId < authorsData.length){
+    		this.authorsInfo[this.alreadyOpened] = "";
+    		this.authorsInfo[chosenAuthorId] = <AuthorInfo data = {authorsData[chosenAuthorId]} />
+    	}
     return (
 		<div>
 			<h1> Authors</h1>
@@ -52,7 +63,6 @@ class AuthorName extends React.Component{
 		this.showDropDownMenu = this.showDropDownMenu.bind(this);
 	}
 	showDropDownMenu(){
-		
 		this.props.click();
 		
 	}
@@ -90,4 +100,9 @@ class AuthorInfo extends React.Component{
 			);
 	}
 }
-export default Authors;
+function select(state) {
+   return {
+     authorsInfo: state.bookTaskApp
+   }
+}
+export default connect(select)(Authors)

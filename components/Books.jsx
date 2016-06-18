@@ -1,12 +1,22 @@
 import React from 'react'
 import { Link } from 'react-router'
-import booksData from '../data/BooksData.js'
+import { loadBooksInfo } from '../actions/Actions'
+import { connect } from 'react-redux'
+
 class Books extends React.Component{
+
 	constructor(){
 	    super();
 	  
   	}
 	render() {
+	    const { dispatch, booksInfo } = this.props
+		//var booksData = dispatch(loadBooksInfo());
+	
+	    var booksData = booksInfo.books.booksList; // 1:name of prop, 2: name of reducer, 3: name of field in state
+	
+	    //console.log(booksData);
+		
 		return (
 			<div>
 			<h1> 
@@ -45,4 +55,10 @@ class BookInfo extends React.Component{
       );
    }
 }
-export default Books;
+
+function select(state) {
+   return {
+     booksInfo: state.bookTaskApp
+   }
+}
+export default connect(select)(Books)
