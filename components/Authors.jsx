@@ -9,7 +9,6 @@ class Authors extends React.Component{
 	constructor(){
 		super();
 		this.authorsDataLength = 0;
-		this.alreadyOpened = 0;
 		this.authorsInfo = [];		
 		
 	}
@@ -20,7 +19,7 @@ class Authors extends React.Component{
 		
 		this.dispatch(openAuthorInfo(clickedId));
 
-		this.alreadyOpened = clickedId;
+		
 		this.forceUpdate()
 	}
 	componentDidMount() {
@@ -34,10 +33,11 @@ class Authors extends React.Component{
     	const {authorsInfo} = this.props;
     	var authorsData = authorsInfo.authors.authorsList;
     	var chosenAuthorId = authorsInfo.authors.chosenAuthorId;
+    	var prevChosenAuthorId = authorsInfo.authors.prevChosenAuthorId;
     	this.authorsDataLength = authorsData.length;
 
     	if(chosenAuthorId >= 0 && chosenAuthorId < authorsData.length){
-    		this.authorsInfo[this.alreadyOpened] = "";
+    		this.authorsInfo[prevChosenAuthorId] = "";
     		this.authorsInfo[chosenAuthorId] = <AuthorInfo data = {authorsData[chosenAuthorId]} />
     	}
     return (

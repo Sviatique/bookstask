@@ -6,16 +6,3 @@ export function openAuthorInfo(id){
 		id
 	};
 }
-
-export function loadBooksInfo(){
-	return {
-		type: types.LOAD_BOOKS_INFO
-		
-	};
-}
-
-export function loadAuthorsInfo(){
-	return {
-		type: types.LOAD_AUTHORS_INFO
-	};
-}
