@@ -6,4 +6,4 @@ cd bookstask
 npm install
 npm start
 ```
-and go in your browser ton route `localhost/8080`
+and go in your browser on route `localhost/8080`
