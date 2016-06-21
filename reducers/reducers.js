@@ -27,7 +27,6 @@ export default function authors(state = initialState, action){
 					chosenAuthorId: action.id
 
 				})
-			
 		default:
 			return state;
 	}

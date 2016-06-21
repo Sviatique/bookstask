@@ -21,11 +21,13 @@ a:hover {
 }
 .clickable {
   padding: 15px 0 15px 20px;
+  cursor: pointer;
 }
 .clickable-item {
-  cursor: pointer;
+  
 }
 .item-identifiers {
   font-size: 17px;
   padding-right: 15px;
 }
+

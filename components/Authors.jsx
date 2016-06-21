@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
-
+import $ from 'jquery'
 import { openAuthorInfo } from '../actions/Actions'
-
+var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
 class Authors extends React.Component{
 	
 	constructor(){
@@ -20,7 +20,6 @@ class Authors extends React.Component{
 		this.dispatch(openAuthorInfo(clickedId));
 
 		
-		this.forceUpdate()
 	}
 	componentDidMount() {
 		this.dispatch = this.props.dispatch;
@@ -41,16 +40,18 @@ class Authors extends React.Component{
     		this.authorsInfo[chosenAuthorId] = <AuthorInfo data = {authorsData[chosenAuthorId]} />
     	}
     return (
+
+
 		<div>
+
 			<h1> Authors</h1>
-			
-					{authorsData.map((author, i) => 
-						
+					<div >
+					{authorsData.map((author, i) => 			
 						<AuthorName click={this.handleClick.bind(this,i, author)} key = {i} data = {author} openedAuthorInfo={this.authorsInfo[i]}/> 
 						
 						)}  
 					
-				
+					</div>
 			
 		</div>
     )
@@ -66,17 +67,15 @@ class AuthorName extends React.Component{
 		this.props.click();
 		
 	}
+	
 	render() {
-
+		
+ 		
       return (
-      	<div>
-	        <div className="clickable">
-	        	<div className="clickable-item">
+      		<div className="clickable" >	        
 	            	<div className="list" onClick={this.showDropDownMenu}>{this.props.data.fullName}</div>
-	            </div>
-	        </div>
-	            <div id= {this.props.data.id}> {this.props.openedAuthorInfo}</div>
-        </div>
+               		<div id= {this.props.data.id}> {this.props.openedAuthorInfo}</div> 
+        	</div>
       );
    }
 }
@@ -85,14 +84,17 @@ class AuthorInfo extends React.Component{
 	render(){
 		return(
 				
-			<div>
+			<div >
+					
 				<Link to={{ pathname: `/Authors/${this.props.data.id}`}}>{this.props.data.id} page </Link>
             	<div className="list"> 
+
             		<div className="item-identifiers"> Written books: </div>
+            	
 
 	            	{this.props.data.booksList.map((book,i) => 
 	            	<div key = {i} className="list-item"> 
-	            	<Link to={{ pathname: `/Books/${book}`}} > {book} </Link>
+	            		<Link to={{ pathname: `/Books/${book}`}} > {book} </Link>
 	            	</div>)}
             	</div>
             </div>
