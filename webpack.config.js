@@ -1,11 +1,10 @@
-var config = {
+const config = {
    entry: './main.js',
 	
    output: {
       path:'./',
-      filename: 'index.js',
+      filename: './index.js',
    },
-	
    devServer: {
       inline: true,
       port: 8080

@@ -3,47 +3,33 @@ import { Link } from 'react-router'
 
 import {connect} from 'react-redux'
 class Book extends React.Component{
-	constructor(props){
-	    super(props);
-		  this.book;
 
-    }
-  
-  render() {
-    const {dispatch, booksInfo} = this.props;
-    var booksData = booksInfo.books.booksList;
-    console.log(booksData)
-    for(var i =0; i<booksData.length; i++){
-      if(booksData[i].id === this.props.params.name){
-        this.book = booksData[i]
-      }
-    }
+	render() {
+	const {dispatch, booksInfo} = this.props
+	const booksData = booksInfo.authors.booksList
+  const book = booksData[`${this.props.params.name}`]
+	console.log(booksData)
     return (
       <div>
           <h1>  {this.props.params.name} </h1>
           <div className="list">
-              <ItemIdentifier value="Name" /> {this.book.name} 
+              <div className="item-identifiers"> Name: </div> 
+              {book.name} 
           </div>
+
           <div className="list">
-              <ItemIdentifier value="Authors" />
-              {this.book.authors.map((author, i) => 
+              <div className="item-identifiers"> Authors: </div>
+              {book.authors.map((author, i) => 
                   <div className="list-item" key={i}> 
                       <Link to = {{pathname: `/Authors/${author}`}}>{author}</Link>
                   </div>)}
           </div>
           <div className="list"> 
-              <ItemIdentifier value="Genre" />
-              <Link to = {{pathname: `/Genres/${this.book.genre}`}}>{this.book.genre}</Link>
+              <div className="item-identifiers"> Genre: </div>
+              <Link to = {{pathname: `/Genres/${book.genre}`}}>{book.genre}</Link>
           </div>
       </div>
     )
-  }
-}
-class ItemIdentifier extends React.Component{
-  render(){
-    return(
-        <div className="item-identifiers"> {this.props.value}: </div>
-      )
   }
 }
 function select(state) {

@@ -1,107 +1,44 @@
 import React from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
-import $ from 'jquery'
 import { openAuthorInfo } from '../actions/Actions'
-var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
+import  AuthorInfo from './AuthorInfo.jsx'
+
 class Authors extends React.Component{
 	
-	constructor(){
-		super();
-		this.authorsDataLength = 0;
-		this.authorsInfo = [];		
-		
-	}
-	handleClick(clickedId, authorData){
-		
-		this.authorsInfo[this.alreadyOpened] = "";
-		//var authorData = "authorData";
-		
-		this.dispatch(openAuthorInfo(clickedId));
 
+	handleClick(clickedId){
 		
+		this.dispatch(openAuthorInfo(clickedId))
 	}
+
 	componentDidMount() {
 		this.dispatch = this.props.dispatch;
-		for(var i=0; i<this.authorsDataLength; i++){
-			this.authorsInfo.push("");
-		}
-		
 	}
   render() {
-    	const {authorsInfo} = this.props;
-    	var authorsData = authorsInfo.authors.authorsList;
-    	var chosenAuthorId = authorsInfo.authors.chosenAuthorId;
-    	var prevChosenAuthorId = authorsInfo.authors.prevChosenAuthorId;
-    	this.authorsDataLength = authorsData.length;
-
-    	if(chosenAuthorId >= 0 && chosenAuthorId < authorsData.length){
-    		this.authorsInfo[prevChosenAuthorId] = "";
-    		this.authorsInfo[chosenAuthorId] = <AuthorInfo data = {authorsData[chosenAuthorId]} />
-    	}
+  	const authorsData = this.props.authorsInfo.authors.authorsList
+  	const chosenAuthorId = this.props.authorsInfo.authors.chosenAuthorId 
     return (
-
-
 		<div>
-
 			<h1> Authors</h1>
+			<div className='list'>
 					<div >
-					{authorsData.map((author, i) => 			
-						<AuthorName click={this.handleClick.bind(this,i, author)} key = {i} data = {author} openedAuthorInfo={this.authorsInfo[i]}/> 
-						
+
+					{Object.keys(authorsData).map((key) => 			
+						<div key = {key} className='clickable' >	        
+	            			<div className='list' onClick={()=>this.handleClick(key)}>{authorsData[key].fullName}</div>
+        				</div> 
 						)}  
-					
 					</div>
-			
+					<div className='drop-list'>
+						<AuthorInfo  data = {authorsData[chosenAuthorId] || authorsData['Author1']} authorId={chosenAuthorId} />
+					</div>
+			</div> 
 		</div>
     )
   }
 }
 
-class AuthorName extends React.Component{
-	constructor(props){
-		super(props);
-		this.showDropDownMenu = this.showDropDownMenu.bind(this);
-	}
-	showDropDownMenu(){
-		this.props.click();
-		
-	}
-	
-	render() {
-		
- 		
-      return (
-      		<div className="clickable" >	        
-	            	<div className="list" onClick={this.showDropDownMenu}>{this.props.data.fullName}</div>
-               		<div id= {this.props.data.id}> {this.props.openedAuthorInfo}</div> 
-        	</div>
-      );
-   }
-}
-
-class AuthorInfo extends React.Component{
-	render(){
-		return(
-				
-			<div >
-					
-				<Link to={{ pathname: `/Authors/${this.props.data.id}`}}>{this.props.data.id} page </Link>
-            	<div className="list"> 
-
-            		<div className="item-identifiers"> Written books: </div>
-            	
-
-	            	{this.props.data.booksList.map((book,i) => 
-	            	<div key = {i} className="list-item"> 
-	            		<Link to={{ pathname: `/Books/${book}`}} > {book} </Link>
-	            	</div>)}
-            	</div>
-            </div>
-				 
-			);
-	}
-}
 function select(state) {
    return {
      authorsInfo: state.bookTaskApp

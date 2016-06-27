@@ -13,21 +13,22 @@ class Books extends React.Component{
 	    const { dispatch, booksInfo } = this.props
 		//var booksData = dispatch(loadBooksInfo());
 	
-	    var booksData = booksInfo.books.booksList; // 1:name of prop, 2: name of reducer, 3: name of field in state
-	
+	    const booksData = booksInfo.authors.booksList; // 1:name of prop, 2: name of reducer, 3: name of field in state
+		
 	    //console.log(booksData);
 		
 		return (
 			<div>
-			<h1> 
-				Books
-			</h1>
-			<div>
-		
-                  {booksData.map((book, i) => <BookInfo key = {i} data = {book} />)}
-              	 	
-				
-			</div>
+				<h1> 
+					Books
+				</h1>
+				<div>
+				{
+						Object.keys(booksData).map((key) =>
+				       <BookInfo key = {key} data = {booksData[key]} />)
+					}
+	                  
+				</div>
 			</div>
 			);
 	}
@@ -44,13 +45,13 @@ class BookInfo extends React.Component{
 					</li>
 				</ul>
 				<div className="list">
-				<div className="item-identifiers"> Authors: </div>
-	            {this.props.data.authors.map((author,i) => 
-	            	<div key={i} className="list-item">
-	            		<Link to={{ pathname: `/Authors/${author}`}} > {author}</Link>
-	            	</div>
-	            )}          
-	            </div>
+					<div className="item-identifiers"> Authors: </div>
+			            {this.props.data.authors.map((author,i) => 
+			            	<div key={i} className="list-item">
+			            		<Link to={{ pathname: `/Authors/${author}`}} > {author}</Link>
+			            	</div>
+			            )}          
+		            </div>
         	</div>
       );
    }

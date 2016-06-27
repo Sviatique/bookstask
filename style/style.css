@@ -1,5 +1,5 @@
 .frame {
-  width: 300px;
+  display: inline-block;
   background-color: #C0B0D1;
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
@@ -15,6 +15,7 @@ a:hover {
 }
 .list {
   display: flex;
+  padding-right: 15px;
 }
 .list-item {
   padding-right: 10px;
@@ -23,11 +24,18 @@ a:hover {
   padding: 15px 0 15px 20px;
   cursor: pointer;
 }
-.clickable-item {
-  
+.clickable:hover {
+  color: White;
 }
 .item-identifiers {
   font-size: 17px;
   padding-right: 15px;
 }
-
+.drop-list {
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  padding: 20px 20px 20px 20px;
+  display: block;
+  background-color: #cdc0da;
+}

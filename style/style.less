@@ -1,16 +1,17 @@
 @padding-for-items: 10px;
-
-.border-radius (@radius: 5px) {
+@main-bg-color: #C0B0D1;
+.frame-pattern (@radius: 5px, @padding-value: 20px) {
 	-webkit-border-radius: @radius;
 	-moz-border-radius: @radius;
 	border-radius: @radius;
+	padding: 20px 20px 20px 20px;
 }
 
-.frame {
-	width: 300px;
-	background-color: #C0B0D1;
-	.border-radius(20px);
-	padding: 20px 20px 20px 20px;
+.frame { 
+	display: inline-block;
+	background-color: @main-bg-color;
+	.frame-pattern(20px, 20px);
+	
 	font-family: 'Source Sans Pro', sans-serif;
 } 
 a {
@@ -21,20 +22,26 @@ a:hover {
 }
 .list {
 	display:flex;
-
+	padding-right: 15px;
 }
 .list-item{
 	
 	padding-right: 10px;
 }
 .clickable{
-  
   padding: 15px 0 15px 20px;
+  cursor: pointer;
 }
-.clickable-item{
-	cursor: pointer;	
+.clickable:hover{
+	color: White;
 }
 .item-identifiers{
 	font-size: 17px;
 	padding-right: 15px;
+}
+
+.drop-list {
+	.frame-pattern(20px, 10px);
+	display: block;
+	background-color: lighten(@main-bg-color, 5%);
 }

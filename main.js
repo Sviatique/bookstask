@@ -24,7 +24,7 @@ const history = syncHistoryWithStore(browserHistory, store);
 ReactDOM.render((
 	<Provider store = {store}>
 	<div>
-		<Router history={history}>
+	    <Router history={history}>
 			<Route path = "/" component = {App}>		
 				<Route path = "/Books"  component={Books} parameter="book"/> 
 				<Route path = "/Authors" component = {Authors} />
@@ -33,8 +33,7 @@ ReactDOM.render((
 				<Route path = "/Genres/:name" component = {Genre} />
 			</Route>
 		</Router>
-    	
-      </div>
-   </Provider>),
-	
-   document.getElementById('app'));
+	</div>
+	</Provider>),
+document.getElementById('app'));
+
