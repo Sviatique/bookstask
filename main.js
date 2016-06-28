@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { Router, Route, Links, browserHistory, IndexRoute } from 'react-router';
 import {syncHistoryWithStore, routerReducer} from 'react-router-redux';
 
+import booksData from './data/books.js'
+import authorsData from './data/authors.js'
 
 import App from './App.jsx';
 import Books from './components/Books.jsx';
@@ -14,12 +16,19 @@ import Genre from './components/Genre.jsx';
 import { createStore, combineReducers} from 'redux';
 import { Provider } from 'react-redux';
 import bookTaskApp from './reducers/reducers'
-let store = createStore(combineReducers({
+const store = createStore(combineReducers({
 		bookTaskApp, 
 		routing: routerReducer
 	})
-);
+)
 
+store.dispatch({ 
+	type: 'SET_INITIAL_DATA',
+	data: {
+		books: booksData,
+		authors: authorsData
+	}
+})
 const history = syncHistoryWithStore(browserHistory, store);
 ReactDOM.render((
 	<Provider store = {store}>

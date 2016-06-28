@@ -8,7 +8,6 @@ class Authors extends React.Component{
 	
 
 	handleClick(clickedId){
-		
 		this.dispatch(openAuthorInfo(clickedId))
 	}
 
@@ -17,6 +16,8 @@ class Authors extends React.Component{
 	}
   render() {
   	const authorsData = this.props.authorsInfo.authors.authorsList
+  	console.log('authors data(authors.jsx)')
+  	console.log(authorsData)
   	const chosenAuthorId = this.props.authorsInfo.authors.chosenAuthorId 
     return (
 		<div>

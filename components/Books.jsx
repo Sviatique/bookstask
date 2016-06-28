@@ -14,7 +14,8 @@ class Books extends React.Component{
 		//var booksData = dispatch(loadBooksInfo());
 	
 	    const booksData = booksInfo.authors.booksList; // 1:name of prop, 2: name of reducer, 3: name of field in state
-		
+		console.log('books data(books.jsx)')
+  	console.log(booksData)
 	    //console.log(booksData);
 		
 		return (

@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
 import {connect} from 'react-redux'
-import authorsData from '../data/authorsTest.js'
 class Author extends React.Component{
   componentDidMount(){
     const { dispatch } = this.props
@@ -9,7 +8,7 @@ class Author extends React.Component{
   render() {
     
     const {authorsInfo} = this.props
-    //const authorsData = authorsInfo.authors.authorsList
+    const authorsData = authorsInfo.authors.authorsList
     //console.log(authorsData)
     const author = authorsData[`${this.props.params.name}`]
     //console.log(author)
